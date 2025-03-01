@@ -6,8 +6,21 @@ import (
 )
 
 type User struct {
-	ID        primitive.ObjectID `bson:"_id,omitempty"`
-	Name      string             `bson:"name"`
-	Password  string             `bson:"password"`
-	CreatedAt time.Time          `bson:"created_at"`
+	ID        primitive.ObjectID `json:"id,omitempty" bson:"_id,omitempty"`
+	Name      string             `bson:"name" json:"name"`
+	Password  string             `bson:"password" json:"password"`
+	CreatedAt time.Time          `bson:"created_at" json:"created_at"`
+}
+type Task struct {
+	ID          primitive.ObjectID `bson:"_id,omitempty" json:"id"`
+	Name        string             `bson:"name" json:"name"`
+	Description string             `bson:"description" json:"description"`
+	OwnerID     primitive.ObjectID `bson:"owner_id" json:"owner_id"`
+	CreatedAt   time.Time          `bson:"created_at" json:"created_at"`
+	UpdatedAt   time.Time          `bson:"updated_at" json:"updated_at"`
+}
+
+type Request struct {
+	Name     string `bson:"name" json:"name"`
+	Password string `bson:"password" json:"password"`
 }
