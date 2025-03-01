@@ -35,7 +35,6 @@ func CreateTask(c *gin.Context) {
 		Description: body.Description,
 		OwnerID:     ownerID,
 		CreatedAt:   time.Now(),
-		UpdatedAt:   time.Time{},
 	}
 
 	_, err = taskCollection.InsertOne(c, task)
@@ -64,4 +63,35 @@ func GetTasks(c *gin.Context) {
 	}
 
 	c.JSON(200, gin.H{"task": tasks})
+}
+
+func UpdateTask(c *gin.Context) {
+	var body models.Task
+
+	if err := c.ShouldBindJSON(&body); err != nil {
+		c.JSON(400, gin.H{"error": "invalid request body"})
+		return
+	}
+
+	coll := initializers.GetCollection("tasks")
+
+	filter := bson.M{"_id": body.ID}
+	update := bson.M{
+		"$set": bson.M{
+			"name":        body.Name,
+			"description": body.Description,
+			"updated_at":  time.Now(),
+		},
+	}
+
+	result, err := coll.UpdateOne(c, filter, update)
+	if err != nil {
+		c.JSON(400, gin.H{"error": err.Error()})
+		return
+	}
+
+	if result.MatchedCount == 0 {
+		c.JSON(400, gin.H{"error": "task not found"})
+	}
+	c.JSON(200, gin.H{"task": body})
 }

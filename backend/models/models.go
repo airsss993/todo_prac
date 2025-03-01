@@ -17,7 +17,7 @@ type Task struct {
 	Description string             `json:"description"`
 	OwnerID     primitive.ObjectID `bson:"owner_id" json:"owner_id"`
 	CreatedAt   time.Time          `json:"created_at"`
-	UpdatedAt   time.Time          `json:"updated_at"`
+	UpdatedAt   time.Time          `bson:"updated_at" json:"updated_at"`
 }
 type Request struct {
 	Name     string `bson:"name" json:"name"`
