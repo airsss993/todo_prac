@@ -5,8 +5,8 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"time"
-	"trackit/backend/initializers"
-	"trackit/backend/models"
+	"todo_prac/backend/initializers"
+	"todo_prac/backend/models"
 )
 
 func CreateTask(c *gin.Context) {

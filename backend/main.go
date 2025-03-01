@@ -4,8 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"log"
-	"trackit/backend/initializers"
-	"trackit/backend/routes"
+	"todo_prac/backend/initializers"
+	"todo_prac/backend/routes"
 )
 
 func main() {

@@ -2,8 +2,8 @@ package routes
 
 import (
 	"github.com/gin-gonic/gin"
-	"trackit/backend/controllers"
-	"trackit/middleware"
+	"todo_prac/backend/controllers"
+	"todo_prac/backend/middleware"
 )
 
 func UseRoutes(r *gin.Engine) {

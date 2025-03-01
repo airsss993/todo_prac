@@ -9,8 +9,8 @@ import (
 	"net/http"
 	"os"
 	"time"
-	"trackit/backend/initializers"
-	"trackit/backend/models"
+	"todo_prac/backend/initializers"
+	"todo_prac/backend/models"
 )
 
 func AuthRequest(c *gin.Context) {
