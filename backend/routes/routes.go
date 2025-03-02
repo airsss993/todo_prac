@@ -8,8 +8,14 @@ import (
 
 func UseRoutes(r *gin.Engine) {
 	r.POST("/signup", controllers.SignUp)
-	r.POST("/login", middleware.AuthRequest, controllers.Login)
-	r.POST("/task", controllers.CreateTask)
-	r.GET("/tasks", controllers.GetTasks)
-	r.POST("/tasks", controllers.UpdateTask)
+	r.POST("/login", controllers.Login)
+
+	auth := r.Group("/auth")
+	auth.Use(middleware.AuthRequest)
+	{
+		auth.POST("/task", controllers.CreateTask)    // POST /auth/task
+		auth.GET("/tasks", controllers.GetTasks)      // GET /auth/tasks
+		auth.PUT("/tasks", controllers.UpdateTask)    // PUT /auth/tasks
+		auth.DELETE("/tasks", controllers.DeleteTask) // DELETE /auth/tasks
+	}
 }

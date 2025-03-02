@@ -1,3 +1,5 @@
+// The above functions handle user sign up and login processes in a Go application using Gin framework
+// and MongoDB.
 package controllers
 
 import (
@@ -5,7 +7,6 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-	_ "go.mongodb.org/mongo-driver/bson/primitive"
 	"golang.org/x/crypto/bcrypt"
 	"net/http"
 	"os"

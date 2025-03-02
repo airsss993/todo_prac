@@ -95,3 +95,21 @@ func UpdateTask(c *gin.Context) {
 	}
 	c.JSON(200, gin.H{"task": body})
 }
+
+func DeleteTask(c *gin.Context) {
+	var body models.Task
+
+	if err := c.ShouldBindJSON(&body); err != nil {
+		c.JSON(400, gin.H{"error": "invalid request body"})
+		return
+	}
+
+	coll := initializers.GetCollection("tasks")
+	filter := bson.M{"name": body.Name}
+	_, err := coll.DeleteOne(c, filter)
+	if err != nil {
+		c.JSON(400, gin.H{"error": "task not found"})
+	}
+
+	c.JSON(200, gin.H{"deleted name task": body.Name})
+}
